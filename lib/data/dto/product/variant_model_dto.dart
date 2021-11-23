@@ -122,4 +122,7 @@ class VariantModelDto implements VariantModel {
       });
     }).value ?? 0;
   }
+
+  @override
+  int get available => 8;
 }

@@ -8,9 +8,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class ProductWidget extends StatelessWidget {
-  ProductModel productModel2;
+  ProductModel productModel;
 
-  ProductWidget({required this.productModel2, Key? key}) : super(key: key);
+  ProductWidget({required this.productModel, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class ProductWidget extends StatelessWidget {
         height: 243,
         child: InkWell(
           onTap: () {
-            Navigator.pushNamed(context, ProductDetailPage.path, arguments: productModel2.id);
+            Navigator.pushNamed(context, ProductDetailPage.path, arguments: productModel.id);
           },
           child: Padding(
             padding: const EdgeInsets.all(8.0),
@@ -34,9 +34,9 @@ class ProductWidget extends StatelessWidget {
                 CachedNetworkImage(
                   height: 120,
                   fit: BoxFit.cover,
-                  imageUrl: productModel2.images != null &&
-                          productModel2.images!.isNotEmpty
-                      ? productModel2.images![0].full_path ?? ''
+                  imageUrl: productModel.images != null &&
+                          productModel.images!.isNotEmpty
+                      ? productModel.images![0].full_path ?? ''
                       : '',
                   placeholder: (BuildContext context, url) {
                     return const Center(child: CupertinoActivityIndicator());
@@ -46,16 +46,16 @@ class ProductWidget extends StatelessWidget {
                   },
                 ),
                 SizedBox(height: 10),
-                Text(productModel2.name ?? "",
+                Text(productModel.name ?? "",
                     style: Theme.of(context).textTheme.caption?.copyWith(
                         fontWeight: FontWeight.bold, color: Colors.black),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis),
                 Spacer(),
-                productModel2.variants![0].comparePrice !=
-                        productModel2.variants![0].salePrice
+                productModel.variants![0].comparePrice !=
+                        productModel.variants![0].salePrice
                     ? Text(
-                        (productModel2.variants![0].comparePrice ?? 0)!
+                        (productModel.variants![0].comparePrice ?? 0)!
                                 .toInt()
                                 .toMoney() +
                             'đ',
@@ -72,7 +72,7 @@ class ProductWidget extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      (productModel2.variants?[0].variant_prices?[0].value
+                      (productModel.variants?[0].variant_prices?[0].value
                                   ?.toInt()
                                   .toMoney() ??
                               "0") +

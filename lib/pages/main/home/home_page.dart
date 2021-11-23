@@ -324,7 +324,7 @@ class HomePageState extends State<HomePage> {
                                                                       (context,
                                                                           index) {
                                                                     return ProductWidget(
-                                                                        productModel2:
+                                                                        productModel:
                                                                             snap.data![index]);
                                                                   },
                                                                   separatorBuilder:

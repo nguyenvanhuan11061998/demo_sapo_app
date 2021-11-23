@@ -32,4 +32,6 @@ abstract class VariantModel {
   int get salePrice;
 
   int get comparePrice;
+
+  int get available;
 }

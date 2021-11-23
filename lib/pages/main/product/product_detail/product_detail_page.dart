@@ -1,9 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:demo_sapo_app/data/blocs/cart_bloc/cart_bloc.dart';
 import 'package:demo_sapo_app/data/blocs/product/detail/product_detail_bloc.dart';
 import 'package:demo_sapo_app/gen/assets.gen.dart';
+import 'package:demo_sapo_app/widgets/bottom_sheet_add_to_cart.dart';
 import 'package:demo_sapo_app/widgets/design_system/app_button_border_widget.dart';
 import 'package:demo_sapo_app/widgets/product_widget.dart';
+import 'package:demo_sapo_app/widgets/sapo_bottom_sheet.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -53,15 +56,15 @@ class ProductDetailPageState extends State<ProductDetailPage> {
         child: BlocConsumer<ProductDetailBloc, ProductDetailState>(
           // khi nào trạng thái ProductDetailState thay đổi sẽ gọi đến listener
           listener: (context, state) {
-            state.maybeWhen((productModel2) {
+            state.maybeWhen((productModel) {
               _productBloc.getProductOfCategory(
-                  categoryIds: [productModel2.category_id ?? 0]);
+                  categoryIds: [productModel.category_id ?? 0]);
             }, orElse: () {});
           },
           bloc: productDetailBloc,
           builder: (context, state) {
             return state.when(
-                (productModel2) => Column(
+                (productModel) => Column(
                       children: [
                         Expanded(
                           child: SingleChildScrollView(
@@ -83,7 +86,7 @@ class ProductDetailPageState extends State<ProductDetailPage> {
                                                 _currentIndex = index;
                                               });
                                             }),
-                                        items: productModel2.images
+                                        items: productModel.images
                                             ?.map((image) => Container(
                                                   child: CachedNetworkImage(
                                                     imageUrl:
@@ -99,7 +102,7 @@ class ProductDetailPageState extends State<ProductDetailPage> {
                                       bottom: 10,
                                       child: Container(
                                         child: Text(
-                                          '${_currentIndex + 1}/${productModel2.images?.length}',
+                                          '${_currentIndex + 1}/${productModel.images?.length}',
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodyText2
@@ -121,7 +124,7 @@ class ProductDetailPageState extends State<ProductDetailPage> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       SizedBox(height: 10),
-                                      Text(productModel2.name ?? '',
+                                      Text(productModel.name ?? '',
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodyText1!
@@ -136,7 +139,7 @@ class ProductDetailPageState extends State<ProductDetailPage> {
                                                   .copyWith(fontSize: 13)),
                                           Expanded(
                                               child: Text(
-                                            productModel2.variants!.first.sku
+                                            productModel.variants!.first.sku
                                                 .toString(),
                                             style: Theme.of(context)
                                                 .textTheme
@@ -160,7 +163,7 @@ class ProductDetailPageState extends State<ProductDetailPage> {
                                                   .copyWith(fontSize: 13)),
                                           Expanded(
                                               child: Text(
-                                                  productModel2.brand ?? '',
+                                                  productModel.brand ?? '',
                                                   style: Theme.of(context)
                                                       .textTheme
                                                       .caption!
@@ -174,7 +177,7 @@ class ProductDetailPageState extends State<ProductDetailPage> {
                                       ),
                                       SizedBox(height: 22),
                                       Text(
-                                          '${productModel2.variants![0].comparePrice}đ',
+                                          '${productModel.variants![0].comparePrice}đ',
                                           style: Theme.of(context)
                                               .textTheme
                                               .caption!
@@ -185,7 +188,7 @@ class ProductDetailPageState extends State<ProductDetailPage> {
                                                   fontSize: 16,
                                                   fontWeight: FontWeight.bold)),
                                       Text(
-                                          '${productModel2.variants![0].salePrice}đ',
+                                          '${productModel.variants![0].salePrice}đ',
                                           style: Theme.of(context)
                                               .textTheme
                                               .caption!
@@ -213,7 +216,7 @@ class ProductDetailPageState extends State<ProductDetailPage> {
                                                 .copyWith(fontSize: 18)),
                                         SizedBox(height: 15),
                                         Html(
-                                            data: productModel2.description ??
+                                            data: productModel.description ??
                                                 ''),
                                       ],
                                     )),
@@ -225,7 +228,7 @@ class ProductDetailPageState extends State<ProductDetailPage> {
                                   return state.when((data) {
                                     data
                                       ..removeWhere((item) =>
-                                          item.id == productModel2.id);
+                                          item.id == productModel.id);
                                     return Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
@@ -261,7 +264,7 @@ class ProductDetailPageState extends State<ProductDetailPage> {
                                                             237),
                                             itemBuilder: (context, index) {
                                               return ProductWidget(
-                                                productModel2: data[index],
+                                                productModel: data[index],
                                               );
                                             },
                                             itemCount: data.length),
@@ -306,14 +309,26 @@ class ProductDetailPageState extends State<ProductDetailPage> {
                               ),
                               Expanded(
                                   child: Padding(
-                                    padding: const EdgeInsets.only(left: 10),
-                                    child: AppButtonBoderWidget(
-                                title: 'Chọn mua',
-                                backgroundColor: Colors.red,
-                                textColor: Colors.white,
-                                onPressed: () {},
-                              ),
-                                  )),
+                                padding: const EdgeInsets.only(left: 10),
+                                child: AppButtonBoderWidget(
+                                  title: 'Chọn mua',
+                                  backgroundColor: Colors.red,
+                                  textColor: Colors.white,
+                                  onPressed: () {
+                                    // show một bottom sheet
+                                    showModalBottomSheet(
+                                        context: context,
+                                        isScrollControlled: true,
+                                        backgroundColor: Colors.transparent,
+                                        builder: (context) {
+                                          return SapoBottomSheet(
+                                              child: BottomOptionAddToCard(
+                                                productModel: productModel,
+                                              ));
+                                        });
+                                  },
+                                ),
+                              )),
                             ],
                           ),
                         )

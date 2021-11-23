@@ -1,6 +1,7 @@
 
 
 import 'package:demo_sapo_app/data/dto/cart_dto.dart';
+import 'package:demo_sapo_app/domain/model/home_config/product.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 
 class CartBloc extends HydratedCubit<CartDto?> {
@@ -19,4 +20,7 @@ class CartBloc extends HydratedCubit<CartDto?> {
     throw UnimplementedError();
   }
 
+  void addCartItem(ProductModel productModel, int countItem) {
+
+  }
 }

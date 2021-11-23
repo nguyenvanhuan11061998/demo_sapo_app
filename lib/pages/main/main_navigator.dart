@@ -10,6 +10,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 
 class MainNavigator extends StatefulWidget {
+  const MainNavigator({Key? key}) : super(key: key);
+
   @override
   MainNavigatorState createState() => MainNavigatorState();
 
@@ -23,9 +25,12 @@ class MainNavigatorState extends State<MainNavigator>{
       providers: [
         BlocProvider(create: (context) {
           final cubit = CartBloc();
+          if (GetIt.instance.isRegistered<CartBloc>()) {
+            GetIt.instance.unregister<CartBloc>();
+          }
           GetIt.instance.registerSingleton(cubit);
           return cubit;
-        })
+        }),
       ],
       child: NavigatorSupport(
         initialRoute: MainPage.path,
