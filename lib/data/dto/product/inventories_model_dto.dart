@@ -1,8 +1,10 @@
 
-
-
 import 'package:demo_sapo_app/domain/model/home_config/inventories_model.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
+part 'inventories_model_dto.g.dart';
+
+@JsonSerializable()
 class InventoriesModelDto implements InventoriesModel {
   @override
   int? available;
@@ -15,9 +17,11 @@ class InventoriesModelDto implements InventoriesModel {
 
   InventoriesModelDto(this.available, this.location_id, this.variant_id);
 
-  InventoriesModelDto.fromJson(Map<String, dynamic> json) {
-    available = json['available'] as int?;
-    location_id = json['location_id'] as int?;
-    variant_id = json['variant_id'] as int?;
+  factory InventoriesModelDto.fromJson(Map<String, dynamic> json) {
+    return _$InventoriesModelDtoFromJson(json);
+  }
+
+  Map<String, dynamic> toJson() {
+    return _$InventoriesModelDtoToJson(this);
   }
 }

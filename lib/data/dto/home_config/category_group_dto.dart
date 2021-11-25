@@ -1,7 +1,10 @@
 
 
 import 'package:demo_sapo_app/domain/model/home_config/category_group_model.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
+
+@JsonSerializable()
 class CategoriesGroupDto implements CategoriesGroup{
 
   @override

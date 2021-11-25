@@ -43,6 +43,6 @@ class CategoryModelDto implements CategoryModel {
 
   @override
   @JsonKey(defaultValue: [])
-  List<CategoryModel>? categories;
+  List<CategoryModelDto>? categories;
 
 }

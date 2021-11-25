@@ -176,7 +176,7 @@ class BottomOptionAddToCardState extends State<BottomOptionAddToCard> {
                   textColor: Colors.red,
                   onPressed: () {
                     CartBloc _cartBloc = context.read<CartBloc>();
-                    _cartBloc.addCartItem(widget.productModel, _count);
+                    _cartBloc.addCartItem(1, widget.productModel, _count);
                     Navigator.pop(context);
                   },
                 )),

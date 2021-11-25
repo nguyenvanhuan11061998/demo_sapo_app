@@ -1,7 +1,9 @@
 
 
 import 'package:demo_sapo_app/domain/model/home_config/option_model.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
+@JsonSerializable()
 class OptionsModelDto implements OptionsModel {
 
   @override
@@ -23,5 +25,14 @@ class OptionsModelDto implements OptionsModel {
     name = json['name'] as String?;
     position = json['position'] as int?;
     values = (json['values'] as List<dynamic>).map((e) => e as String).toList();
+  }
+
+  Map<String, dynamic> toJson() {
+    return <String, dynamic> {
+      'id' : id,
+      'name' : name,
+      'position' : position,
+      'values' : values
+    };
   }
 }

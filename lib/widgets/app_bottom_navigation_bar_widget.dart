@@ -1,6 +1,9 @@
+import 'package:demo_sapo_app/data/blocs/cart_bloc/cart_bloc.dart';
+import 'package:demo_sapo_app/data/dto/cart/cart/cart_dto.dart';
 import 'package:demo_sapo_app/gen/assets.gen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/src/provider.dart';
 
 import 'bottom_bar_item.dart';
 
@@ -30,7 +33,10 @@ class AppBottomNavigationBarWidgetState
           border: Border.all(width: 1, color: Color(0x1a000000)),
           color: Colors.white),
       height: kBottomNavigationBarHeight +
-          MediaQuery.of(context).padding.bottom +
+          MediaQuery
+              .of(context)
+              .padding
+              .bottom +
           12,
       child: Row(
         children: [
@@ -70,12 +76,30 @@ class AppBottomNavigationBarWidgetState
           ),
           Expanded(
             child: InkWell(
-              child: BottomBarItem(
-                  isSelected: widget.indexPage == 2,
-                  iconPath: widget.indexPage == 2
-                      ? Assets.icons.icCartSelected
-                      : Assets.icons.icCart,
-                  title: 'Giỏ hàng'),
+              child: StreamBuilder<CartDto?>(
+                  stream: context
+                      .watch<CartBloc>()
+                      .stream,
+                  builder: (context, snap) {
+                    if (snap.hasData) {
+                      return BottomBarItem(
+                          isSelected: widget.indexPage == 2,
+                          iconPath: widget.indexPage == 2
+                              ? Assets.icons.icCartSelected
+                              : Assets.icons.icCart,
+                          countCart: snap.data!.cart.length,
+                          title: 'Giỏ hàng');
+                    } else {
+                      return BottomBarItem(
+                          isSelected: widget.indexPage == 2,
+                          iconPath: widget.indexPage == 2
+                              ? Assets.icons.icCartSelected
+                              : Assets.icons.icCart,
+                          countCart: context.watch<CartBloc>().state!.cart.length,
+                          title: 'Giỏ hàng');
+                    }
+                  }
+              ),
               onTap: () {
                 if (widget.indexPage != 2) {
                   setState(() {

@@ -3,10 +3,14 @@
 import 'package:demo_sapo_app/data/dto/product/image_model_dto.dart';
 import 'package:demo_sapo_app/data/dto/product/variant_price_dto.dart';
 import 'package:demo_sapo_app/domain/model/home_config/variant_model.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:get_it/get_it.dart';
 
 import 'inventories_model_dto.dart';
 
+part 'variant_model_dto.g.dart';
+
+@JsonSerializable()
 class VariantModelDto implements VariantModel {
   @override
   String? barcode;
@@ -78,23 +82,12 @@ class VariantModelDto implements VariantModel {
       this.inventories,
       this.variant_prices);
 
-  VariantModelDto.fromJson(Map<String, dynamic> json) {
-    barcode = json['barcode'] as String?;
-    description = json['description'] as String?;
-    ellable = json['ellable'] as bool?;
-    id = json['id'] as int?;
-    product_id = json['product_id'] as int?;
-    product_name = json['product_name'] as String?;
-    sku = json['sku'] as String?;
-    unit = json['unit'] as String?;
-    weight_unit = json['weight_unit'] as String?;
-    weight_value = json['weight_value'] as int?;
-    discount = json['discount'] as String?;
-    thumbnail = json['thumbnail'] as String?;
+  factory VariantModelDto.fromJson(Map<String, dynamic> json) {
+    return _$VariantModelDtoFromJson(json);
+  }
 
-    images = (json['images'] as List<dynamic>?)?.map((e) => ImageModelDto.fromJson(e as Map<String, dynamic>)).toList();
-    inventories = (json['inventories'] as List<dynamic>?)?.map((e) => InventoriesModelDto.fromJson(e as Map<String, dynamic>)).toList();
-    variant_prices = (json['variant_prices'] as List<dynamic>?)?.map((e) => VariantPriceDto.fromJson(e as Map<String, dynamic>)).toList();
+  Map<String, dynamic> toJson() {
+    return _$VariantModelDtoToJson(this);
   }
 
   @override

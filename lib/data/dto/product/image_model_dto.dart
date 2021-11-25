@@ -19,10 +19,20 @@ class ImageModelDto extends ImageModel{
   int? size;
 
 
+  ImageModelDto(this.full_path, this.id, this.path, this.size);
+
   ImageModelDto.fromJson(Map<String, dynamic> json) {
     full_path = json['full_path'] as String?;
     id = json['id'] as int?;
     path = json['path'] as String?;
     size = json['size'] as int?;
+  }
+  Map<String, dynamic> toJson() {
+    return <String, dynamic> {
+      'full_path' : full_path,
+      'id' : id,
+      'path' : path,
+      'size' : size
+    };
   }
 }
