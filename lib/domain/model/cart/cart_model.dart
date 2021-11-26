@@ -14,4 +14,6 @@ abstract class CartModel {
   List<CartItemModel> get cart;
 
   AddressModel? get addressModel;
+
+  int get totalPrice;
 }

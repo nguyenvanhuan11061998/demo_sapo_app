@@ -18,7 +18,7 @@ dependencies:
   tuple:
   freezed_annotation:
   # JsonParser
-  json_annotation: ^4.3.0
+  json_annotation:
   # Http Client
   dio:
   #Svg Loader
@@ -56,7 +56,7 @@ dependencies:
   dotted_decoration: ^2.0.0
   dart_ipify: ^1.1.1
   qr_code_scanner: ^0.6.1
-  permission_handler: ^8.2.5
+  permission_handler:
   timelines:
   hydrated_bloc: ^7.1.0
 
@@ -65,7 +65,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   build_runner:
-  json_serializable: ^6.0.1
+  json_serializable:
   freezed:
   flutter_lints: ^1.0.4
 flutter:

@@ -1,10 +1,14 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:demo_sapo_app/utils/extensions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:demo_sapo_app/data/dto/cart/cart/cart_item_dto.dart';
 
 class ItemCartWidget extends StatefulWidget {
-  const ItemCartWidget({Key? key}) : super(key: key);
+  CartItemDto cartItemDto;
+  VoidCallback onDelete;
+
+  ItemCartWidget({required this.cartItemDto, required this.onDelete, Key? key}) : super(key: key);
 
   @override
   ItemCartWidgetState createState() {
@@ -47,7 +51,7 @@ class ItemCartWidgetState extends State<ItemCartWidget> {
             padding: const EdgeInsets.symmetric(vertical: 3),
             child: CachedNetworkImage(
                 imageUrl:
-                    'https://sapo.dktcdn.net/100/246/770/variants/0e2544ab-8d98-4100-a6e1-f1d8303f3486.jpg',
+                    widget.cartItemDto.image,
                 fit: BoxFit.cover),
           ),
           Expanded(
@@ -60,7 +64,7 @@ class ItemCartWidgetState extends State<ItemCartWidget> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'Những bí mật của cuộc sống ',
+                    widget.cartItemDto.product.name ?? '',
                     style: Theme.of(context).textTheme.bodyText1!.copyWith(
                         fontSize: 13,
                         fontWeight: FontWeight.bold,
@@ -69,7 +73,7 @@ class ItemCartWidgetState extends State<ItemCartWidget> {
                     overflow: TextOverflow.ellipsis,
                   ),
                   SizedBox(height: 5),
-                  Text('46.000đ',
+                  Text('${widget.cartItemDto.getSumPrice.toInt().toMoney() ?? 0}đ',
                       style: Theme.of(context).textTheme.bodyText1!.copyWith(
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
@@ -108,7 +112,7 @@ class ItemCartWidgetState extends State<ItemCartWidget> {
                           padding: const EdgeInsets.symmetric(
                               horizontal: 25, vertical: 3),
                           child: Text(
-                            '1',
+                            '${widget.cartItemDto.count}',
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyText1!
@@ -134,11 +138,16 @@ class ItemCartWidgetState extends State<ItemCartWidget> {
                         ),
                       ),
                       Spacer(),
-                      Text('Xóa',
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyText1!
-                              .copyWith(fontSize: 12, color: Colors.blue)),
+                      InkWell(
+                        onTap: () {
+                          widget.onDelete();
+                        },
+                        child: Text('Xóa',
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyText1!
+                                .copyWith(fontSize: 12, color: Colors.blue)),
+                      ),
                     ],
                   )
                 ],

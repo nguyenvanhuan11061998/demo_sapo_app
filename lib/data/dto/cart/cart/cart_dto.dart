@@ -35,4 +35,14 @@ class CartDto extends CartModel {
   }
 
   Map<String, dynamic> toJson() => _$CartDtoToJson(this);
+
+  @override
+  // TODO: implement totalPrice
+  int get totalPrice {
+    int totalPrice = 0;
+    cart.forEach((cartItem) {
+      totalPrice += cartItem.getSumPrice;
+    });
+    return totalPrice;
+  }
 }

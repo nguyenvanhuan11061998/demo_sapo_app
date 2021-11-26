@@ -42,4 +42,8 @@ class CartItemDto extends CartItemModel {
       _$CartItemDtoFromJson(json);
 
   Map<String, dynamic> toJson() => _$CartItemDtoToJson(this);
+
+  int get getSumPrice {
+    return (count * (product.variants![0].variant_prices![0].value ?? 0));
+  }
 }

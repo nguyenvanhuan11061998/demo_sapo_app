@@ -1,5 +1,6 @@
 
 import 'package:demo_sapo_app/data/blocs/cart_bloc/cart_bloc.dart';
+import 'package:demo_sapo_app/pages/main/cart/cart_page.dart';
 import 'package:demo_sapo_app/pages/main/home/home_page.dart';
 import 'package:demo_sapo_app/pages/main/main_page.dart';
 import 'package:demo_sapo_app/pages/main/product/product_detail/product_detail_page.dart';
@@ -44,6 +45,8 @@ class MainNavigatorState extends State<MainNavigator>{
               ));
             case HomePage.path:
               return MaterialPageRoute(builder: (context) => MainPage(initialPage: 0));
+            case CartPage.path:
+              return MaterialPageRoute(builder: (context) => MainPage(initialPage: 2));
           }
         },
       ),

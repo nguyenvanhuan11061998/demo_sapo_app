@@ -26,7 +26,7 @@ void main() async {
       providers: [
         BlocProvider.value(value: GetIt.instance.get<AuthNavigationBloc>()),
         // BlocProvider(create: (context) => AuthNavigationBloc()),
-        BlocProvider.value(value: GetIt.instance.get<ProductBloc>()),
+        BlocProvider.value(value: GetIt.I<ProductBloc>()),
       ],
       child: MultiRepositoryProvider(providers: [
         RepositoryProvider<HomeRepository>(

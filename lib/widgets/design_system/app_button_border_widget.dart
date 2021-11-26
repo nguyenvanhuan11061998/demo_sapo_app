@@ -5,13 +5,18 @@ class AppButtonBoderWidget extends ElevatedButton {
       {required String title,
       Color? borderColor,
       Color? backgroundColor,
+      Color? disableColor,
       Color? textColor,
       VoidCallback? onPressed})
       : super(
             child: Text(
               title,
               style: TextStyle(
-                color: textColor != null ? textColor : onPressed != null ? Color(0xffd10000) : Colors.white,
+                color: textColor != null
+                    ? textColor
+                    : onPressed != null
+                        ? Color(0xffd10000)
+                        : Colors.white,
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
                 fontFamily: 'SFProDisplaySemiBold',
@@ -26,7 +31,7 @@ class AppButtonBoderWidget extends ElevatedButton {
                 return RoundedRectangleBorder(
                     side: BorderSide(
                       color: onPressed == null
-                          ? Colors.grey
+                          ? disableColor ?? Colors.grey
                           : borderColor ?? const Color(0xffD10000),
                     ),
                     borderRadius: const BorderRadius.all(Radius.circular(8)));
@@ -35,7 +40,7 @@ class AppButtonBoderWidget extends ElevatedButton {
                 (states) {
                   return onPressed != null
                       ? backgroundColor ?? Colors.white
-                      : Colors.grey;
+                      : disableColor ?? Colors.grey;
                 },
               ),
             ));

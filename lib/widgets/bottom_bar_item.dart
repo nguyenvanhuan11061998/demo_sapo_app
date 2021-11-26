@@ -25,23 +25,28 @@ class BottomBarItemState extends State<BottomBarItem> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(top: 15),
+      padding: const EdgeInsets.only(top: 10),
       alignment: Alignment.center,
       child: Column(
         children: [
           Stack(children: [
             Positioned(
-              child: SvgPicture.asset(widget.iconPath, color: widget.isSelected ? Color(0xffd10000) : Color(0xff9e9e9e), height: 22),
+              child: Padding(
+                padding: const EdgeInsets.only(top:8.0, right: 4, left: 4),
+                child: SvgPicture.asset(widget.iconPath, color: widget.isSelected ? Color(0xffd10000) : Color(0xff9e9e9e), height: 22),
+              ),
             ),
             Positioned(
               right: 0, top: 0,
                 child: widget.countCart > 0 ?  Container(
-              padding: EdgeInsets.all(3),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
+                shape: BoxShape.circle,
                 color: Colors.red,
               ),
-              child: Text('${widget.countCart}', style: Theme.of(context).textTheme.bodyText1!.copyWith(color: Colors.white, fontSize: 12)),
+              child: Padding(
+                padding: const EdgeInsets.all(4.0),
+                child: Text('${widget.countCart}', style: Theme.of(context).textTheme.bodyText1!.copyWith(color: Colors.white, fontSize: 12)),
+              ),
             ) : Container()),
           ],),
           const SizedBox(height: 5),

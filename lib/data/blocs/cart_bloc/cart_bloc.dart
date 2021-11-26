@@ -50,4 +50,14 @@ class CartBloc extends HydratedCubit<CartDto?> {
       emit(state?.copyWithCartItem(cart));
     }
   }
+
+  void deleteCartItem(int productId) {
+    state!.cart.forEach((cartItemDto) {
+      if (cartItemDto.id == productId) {
+        state!.cart.remove(cartItemDto);
+        emit(state);
+        return;
+      }
+    });
+  }
 }
