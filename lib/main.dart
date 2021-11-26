@@ -37,7 +37,7 @@ void main() async {
             create: (context) => CategoryRepositoryImpl()),
         RepositoryProvider<BlogRepository>(
             create: (context) => BlogRepository())
-      ], child: const Application())));
+      ], child: Application())));
 }
 
 
