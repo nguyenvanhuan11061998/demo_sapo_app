@@ -7,8 +7,16 @@ import 'package:demo_sapo_app/data/dto/cart/cart/cart_item_dto.dart';
 class ItemCartWidget extends StatefulWidget {
   CartItemDto cartItemDto;
   VoidCallback onDelete;
+  VoidCallback onIncrease;
+  VoidCallback onReduce;
 
-  ItemCartWidget({required this.cartItemDto, required this.onDelete, Key? key}) : super(key: key);
+  ItemCartWidget(
+      {required this.cartItemDto,
+      required this.onDelete,
+      required this.onIncrease,
+      required this.onReduce,
+      Key? key})
+      : super(key: key);
 
   @override
   ItemCartWidgetState createState() {
@@ -50,9 +58,7 @@ class ItemCartWidgetState extends State<ItemCartWidget> {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 3),
             child: CachedNetworkImage(
-                imageUrl:
-                    widget.cartItemDto.image,
-                fit: BoxFit.cover),
+                imageUrl: widget.cartItemDto.image, fit: BoxFit.cover),
           ),
           Expanded(
             child: Padding(
@@ -73,7 +79,8 @@ class ItemCartWidgetState extends State<ItemCartWidget> {
                     overflow: TextOverflow.ellipsis,
                   ),
                   SizedBox(height: 5),
-                  Text('${widget.cartItemDto.getSumPrice.toInt().toMoney() ?? 0}đ',
+                  Text(
+                      '${widget.cartItemDto.getSumPrice.toInt().toMoney() ?? 0}đ',
                       style: Theme.of(context).textTheme.bodyText1!.copyWith(
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
@@ -81,22 +88,25 @@ class ItemCartWidgetState extends State<ItemCartWidget> {
                   SizedBox(height: 5),
                   Row(
                     children: [
-                      SizedBox(
-                        width: 24,
-                        height: 24,
-                        child: Material(
-                          color: Color(0xffe7e7e7),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(24),
-                          ),
+                      Material(
+                        color: Color(0xffe7e7e7),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(24),
+                        ),
+                        child: Container(
+                          width: 24,
+                          height: 24,
                           child: InkWell(
-                            focusColor: Color(0xffbababa),
+                            customBorder: CircleBorder(),
+                            onTap: () {
+                              widget.onReduce();
+                            },
                             child: Center(
-                              child: Divider(
+                              child: Container(
+                                margin: EdgeInsets.symmetric(horizontal: 5),
+                                width: double.infinity,
+                                height: 1.5,
                                 color: Colors.black,
-                                height: 1,
-                                endIndent: 7,
-                                indent: 7,
                               ),
                             ),
                           ),
@@ -131,10 +141,14 @@ class ItemCartWidgetState extends State<ItemCartWidget> {
                             borderRadius: BorderRadius.circular(20),
                           ),
                           child: InkWell(
+                              customBorder: CircleBorder(),
+                              onTap: () {
+                                widget.onIncrease();
+                              },
                               child: Icon(
-                            Icons.add,
-                            size: 20,
-                          )),
+                                Icons.add,
+                                size: 20,
+                              )),
                         ),
                       ),
                       Spacer(),

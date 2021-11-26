@@ -6,12 +6,13 @@ part of 'inventories_model_dto.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-InventoriesModelDto _$InventoriesModelDtoFromJson(Map<String, dynamic> json) =>
-    InventoriesModelDto(
-      json['available'] as int?,
-      json['location_id'] as int?,
-      json['variant_id'] as int?,
-    );
+InventoriesModelDto _$InventoriesModelDtoFromJson(Map<String, dynamic> json) {
+  return InventoriesModelDto(
+    json['available'] as int?,
+    json['location_id'] as int?,
+    json['variant_id'] as int?,
+  );
+}
 
 Map<String, dynamic> _$InventoriesModelDtoToJson(
         InventoriesModelDto instance) =>

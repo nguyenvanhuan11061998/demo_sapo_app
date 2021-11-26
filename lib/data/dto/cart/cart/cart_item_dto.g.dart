@@ -6,12 +6,14 @@ part of 'cart_item_dto.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-CartItemDto _$CartItemDtoFromJson(Map<String, dynamic> json) => CartItemDto(
-      json['count'] as int,
-      json['id'] as int,
-      ProductDto.fromJson(json['product'] as Map<String, dynamic>),
-      json['variantId'] as int?,
-    );
+CartItemDto _$CartItemDtoFromJson(Map<String, dynamic> json) {
+  return CartItemDto(
+    json['count'] as int,
+    json['id'] as int,
+    ProductDto.fromJson(json['product'] as Map<String, dynamic>),
+    json['variantId'] as int?,
+  );
+}
 
 Map<String, dynamic> _$CartItemDtoToJson(CartItemDto instance) =>
     <String, dynamic>{

@@ -1,6 +1,3 @@
-
-
-
 import 'package:demo_sapo_app/data/dto/cart/cart/cart_dto.dart';
 import 'package:demo_sapo_app/data/dto/cart/cart/cart_item_dto.dart';
 import 'package:demo_sapo_app/domain/model/home_config/product.dart';
@@ -10,7 +7,7 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 
 /// CartBloc: bloc chứa logic, các trạng thái dữ liệu về cart, trạng thái là đối tượng CartDto
 class CartBloc extends HydratedCubit<CartDto?> {
-  CartBloc() : super(CartDto([], 1, null)){
+  CartBloc() : super(CartDto([], 1, null)) {
     hydrate();
   }
 
@@ -20,7 +17,7 @@ class CartBloc extends HydratedCubit<CartDto?> {
     try {
       if (json.values.isEmpty) return null;
       return CartDto.fromJson(json);
-    } catch(error) {
+    } catch (error) {
       return null;
     }
   }
@@ -31,17 +28,25 @@ class CartBloc extends HydratedCubit<CartDto?> {
   }
 
   void addCartItem(int variantsId, ProductModel productModel, int countItem) {
-    final newCartItem = CartItemDto(countItem, productModel.id??0, productModel as ProductDto, variantsId);
-    if(state == null || state!.cart.isEmpty) {
+    final newCartItem = CartItemDto(
+        countItem, productModel.id ?? 0, productModel as ProductDto,
+        variantsId);
+    if (state == null || state!.cart.isEmpty) {
       if (state == null) {
         emit(CartDto([newCartItem], 1, null));
-      } else{
+      } else {
         emit(state!.copyWithCartItem([newCartItem]));
       }
     } else {
-      for(int i = 0; i < state!.cart.length; i++ ) {
-        if (state!.cart.elementAt(i).id == productModel.id) {
-          state!.cart.elementAt(i).setCount(state!.cart.elementAt(i).count + countItem);
+      for (int i = 0; i < state!.cart.length; i++) {
+        if (state!
+            .cart
+            .elementAt(i)
+            .id == productModel.id) {
+          state!.cart.elementAt(i).setCount(state!
+              .cart
+              .elementAt(i)
+              .count + countItem);
           emit(state);
           return;
         }
@@ -55,9 +60,34 @@ class CartBloc extends HydratedCubit<CartDto?> {
     state!.cart.forEach((cartItemDto) {
       if (cartItemDto.id == productId) {
         state!.cart.remove(cartItemDto);
-        emit(state);
+        emit(state!.copyWithCartItem(state!.cart));
         return;
       }
     });
   }
+
+  void changeItemProduct(int productId, StateChangeItem stateChange) {
+    state!.cart.forEach((cartItem) {
+      if (cartItem.id == productId && stateChange == StateChangeItem.INCREASE) {
+        cartItem.count ++;
+        emit(state!.copyWithCartItem(state!.cart));
+        return;
+      } else
+      if (cartItem.id == productId && stateChange == StateChangeItem.REDUCE) {
+        if (cartItem.count > 1) {
+          cartItem.count --;
+          emit(state!.copyWithCartItem(state!.cart));
+          return;
+        } else {
+          deleteCartItem(productId);
+        }
+      }
+    });
+  }
+
+}
+
+enum StateChangeItem {
+  INCREASE,
+  REDUCE
 }

@@ -1,6 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'product_state.dart';
 
@@ -47,13 +46,6 @@ mixin _$ProductState {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult Function(List<ProductModel> data)? $default, {
-    TResult Function()? loading,
-    TResult Function(dynamic error)? error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(List<ProductModel> data)? $default, {
     TResult Function()? loading,
@@ -66,13 +58,6 @@ mixin _$ProductState {
     TResult Function(ProductStateData value) $default, {
     required TResult Function(ProductStateLoading value) loading,
     required TResult Function(ProductStateError value) error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult Function(ProductStateData value)? $default, {
-    TResult Function(ProductStateLoading value)? loading,
-    TResult Function(ProductStateError value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -175,16 +160,6 @@ class _$ProductStateData implements ProductStateData {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult Function(List<ProductModel> data)? $default, {
-    TResult Function()? loading,
-    TResult Function(dynamic error)? error,
-  }) {
-    return $default?.call(data);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(List<ProductModel> data)? $default, {
     TResult Function()? loading,
@@ -205,16 +180,6 @@ class _$ProductStateData implements ProductStateData {
     required TResult Function(ProductStateError value) error,
   }) {
     return $default(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult Function(ProductStateData value)? $default, {
-    TResult Function(ProductStateLoading value)? loading,
-    TResult Function(ProductStateError value)? error,
-  }) {
-    return $default?.call(this);
   }
 
   @override
@@ -290,16 +255,6 @@ class _$ProductStateLoading implements ProductStateLoading {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult Function(List<ProductModel> data)? $default, {
-    TResult Function()? loading,
-    TResult Function(dynamic error)? error,
-  }) {
-    return loading?.call();
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(List<ProductModel> data)? $default, {
     TResult Function()? loading,
@@ -320,16 +275,6 @@ class _$ProductStateLoading implements ProductStateLoading {
     required TResult Function(ProductStateError value) error,
   }) {
     return loading(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult Function(ProductStateData value)? $default, {
-    TResult Function(ProductStateLoading value)? loading,
-    TResult Function(ProductStateError value)? error,
-  }) {
-    return loading?.call(this);
   }
 
   @override
@@ -422,16 +367,6 @@ class _$ProductStateError implements ProductStateError {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult Function(List<ProductModel> data)? $default, {
-    TResult Function()? loading,
-    TResult Function(dynamic error)? error,
-  }) {
-    return error?.call(this.error);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(List<ProductModel> data)? $default, {
     TResult Function()? loading,
@@ -452,16 +387,6 @@ class _$ProductStateError implements ProductStateError {
     required TResult Function(ProductStateError value) error,
   }) {
     return error(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult Function(ProductStateData value)? $default, {
-    TResult Function(ProductStateLoading value)? loading,
-    TResult Function(ProductStateError value)? error,
-  }) {
-    return error?.call(this);
   }
 
   @override

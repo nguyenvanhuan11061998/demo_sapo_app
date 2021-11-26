@@ -45,9 +45,7 @@ class CartPageState extends State<CartPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     AddressWidget(),
-                    ListProductCartWidget(cart: snap.cart, onDelete: (idCartItem) {
-                      _bloc.deleteCartItem(idCartItem);
-                    },),
+                    ListProductCartWidget(cart: snap.cart, bloc: _bloc),
                     CartPageBottom(totalPrice:  snap.totalPrice),
                   ],
                 ),
