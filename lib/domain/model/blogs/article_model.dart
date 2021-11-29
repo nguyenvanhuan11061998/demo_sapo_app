@@ -8,6 +8,7 @@ abstract class ArticleModel {
   String? title;
   String? alias;
   String? media_title;
+  String? modified_on;
   String? content;
   ImageArticleModel? image;
 }

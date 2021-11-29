@@ -1,8 +1,10 @@
 
 import 'package:demo_sapo_app/data/blocs/cart_bloc/cart_bloc.dart';
+import 'package:demo_sapo_app/domain/model/blogs/article_model.dart';
 import 'package:demo_sapo_app/pages/main/cart/cart_page.dart';
 import 'package:demo_sapo_app/pages/main/home/home_page.dart';
 import 'package:demo_sapo_app/pages/main/main_page.dart';
+import 'package:demo_sapo_app/pages/main/news/new_detail_page.dart';
 import 'package:demo_sapo_app/pages/main/product/product_detail/product_detail_page.dart';
 import 'package:demo_sapo_app/utils/navigator_support.dart';
 import 'package:flutter/cupertino.dart';
@@ -47,6 +49,8 @@ class MainNavigatorState extends State<MainNavigator>{
               return MaterialPageRoute(builder: (context) => MainPage(initialPage: 0));
             case CartPage.path:
               return MaterialPageRoute(builder: (context) => MainPage(initialPage: 2));
+            case NewDetailPage.path:
+              return MaterialPageRoute(builder: (context) => NewDetailPage(articleModel: setting.arguments as ArticleModel));
           }
         },
       ),

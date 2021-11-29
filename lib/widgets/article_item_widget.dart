@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:demo_sapo_app/domain/model/blogs/article_model.dart';
+import 'package:demo_sapo_app/pages/main/news/new_detail_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -11,6 +12,9 @@ class ArticleItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
+      onTap: () {
+        Navigator.pushNamed(context, NewDetailPage.path, arguments: model);
+      },
       child: Container(
         decoration: BoxDecoration(
           color: Colors.white,
