@@ -1,10 +1,12 @@
 import 'package:demo_sapo_app/data/blocs/news/new_detail_bloc.dart';
 import 'package:demo_sapo_app/domain/model/blogs/article_model.dart';
 import 'package:demo_sapo_app/gen/assets.gen.dart';
+import 'package:demo_sapo_app/widgets/blogs/blogs_bottom_sheet_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:share_plus/share_plus.dart';
 
 class NewDetailPage extends StatefulWidget {
   static const path = 'NewDetailPage';
@@ -157,31 +159,60 @@ class _NewDetailPageState extends State<NewDetailPage> {
                               return Container();
                             }
                           }),
-                      Row(
-                        children: [
-                          SvgPicture.asset(Assets.icons.icComment,
-                              color: Color(0xff939393)),
-                          SizedBox(width: 10),
-                          Text('Bình luận',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyText1!
-                                  .copyWith(
-                                      fontSize: 16, color: Color(0xff939393)))
-                        ],
+                      InkWell(
+                        onTap: () {
+                          showModalBottomSheet(
+                              context: context,
+                              backgroundColor: Colors.transparent,
+                              isScrollControlled: true,
+                              builder: (context) {
+                                // DraggableScrollableSheet: widget cho phép thao tác cuộn,
+                                // kéo bên trong một bottom sheet, giới hạn kích thước bottom sheet
+                                return DraggableScrollableSheet(
+                                  // initialChildSize: kích thước bottom sheet theo chiều dọc theo tỉ lệ
+                                    initialChildSize: 0.7,
+                                    // maxChildSize: kích thước toàn màn hình theo tỉ lệ
+                                    maxChildSize: 1,
+                                    minChildSize: 0.5,
+                                    builder: (_, controller) {
+                                  return BlogsBottomSheetWidget(
+                                      id: widget.articleModel.id ?? 0,
+                                      bloc_id:
+                                          widget.articleModel.blog_id ?? 0);
+                                });
+                              });
+                        },
+                        child: Row(
+                          children: [
+                            SvgPicture.asset(Assets.icons.icComment,
+                                color: Color(0xff939393)),
+                            SizedBox(width: 10),
+                            Text('Bình luận',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyText1!
+                                    .copyWith(
+                                        fontSize: 16, color: Color(0xff939393)))
+                          ],
+                        ),
                       ),
-                      Row(
-                        children: [
-                          SvgPicture.asset(Assets.icons.icShare,
-                              color: Color(0xff939393)),
-                          SizedBox(width: 10),
-                          Text('Chia sẻ',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyText1!
-                                  .copyWith(
-                                      fontSize: 16, color: Color(0xff939393)))
-                        ],
+                      InkWell(
+                        onTap: () {
+                          Share.share('https://tanvietbooks.vn/${widget.articleModel.alias}', subject: widget.articleModel.title);
+                        },
+                        child: Row(
+                          children: [
+                            SvgPicture.asset(Assets.icons.icShare,
+                                color: Color(0xff939393)),
+                            SizedBox(width: 10),
+                            Text('Chia sẻ',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyText1!
+                                    .copyWith(
+                                        fontSize: 16, color: Color(0xff939393)))
+                          ],
+                        ),
                       ),
                     ],
                   ),
