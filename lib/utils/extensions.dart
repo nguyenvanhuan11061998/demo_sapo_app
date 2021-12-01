@@ -9,3 +9,10 @@ extension Money on int {
     return result;
   }
 }
+
+extension DateTimeFormat on String {
+  String formatDDMMYYYY() {
+    final DateFormat format = DateFormat('dd/MM/yyyy');
+    return format.format(DateTime.parse(this).toLocal());
+  }
+}

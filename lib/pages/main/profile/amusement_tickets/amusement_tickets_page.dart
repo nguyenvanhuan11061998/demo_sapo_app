@@ -37,6 +37,7 @@ class _AmusementTicketsPageState extends State<AmusementTicketsPage> {
         backgroundColor: Color(0xffd10000),
       ),
       body: Container(
+        color: Color(0xffe7e7e7),
         padding: EdgeInsets.symmetric(horizontal: 16),
         child: PagingListView<WarrantyCardModel>(
           shrinkWrap: true,
