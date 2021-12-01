@@ -80,7 +80,7 @@ class ItemCartWidgetState extends State<ItemCartWidget> {
                   ),
                   SizedBox(height: 5),
                   Text(
-                      '${widget.cartItemDto.getSumPrice.toInt().toMoney() ?? 0}đ',
+                      '${widget.cartItemDto.getSumPrice.toInt().toMoney()}đ',
                       style: Theme.of(context).textTheme.bodyText1!.copyWith(
                           fontSize: 14,
                           fontWeight: FontWeight.bold,

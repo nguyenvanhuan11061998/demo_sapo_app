@@ -6,6 +6,7 @@ import 'package:demo_sapo_app/pages/main/home/home_page.dart';
 import 'package:demo_sapo_app/pages/main/main_page.dart';
 import 'package:demo_sapo_app/pages/main/news/new_detail_page.dart';
 import 'package:demo_sapo_app/pages/main/product/product_detail/product_detail_page.dart';
+import 'package:demo_sapo_app/pages/main/profile/amusement_tickets/amusement_tickets_page.dart';
 import 'package:demo_sapo_app/pages/main/profile/loyalty_history/loyalty_history_page.dart';
 import 'package:demo_sapo_app/utils/navigator_support.dart';
 import 'package:flutter/cupertino.dart';
@@ -54,6 +55,8 @@ class MainNavigatorState extends State<MainNavigator>{
               return MaterialPageRoute(builder: (context) => NewDetailPage(articleModel: setting.arguments as ArticleModel));
             case LoyaltyHistoryPage.path:
               return MaterialPageRoute(builder: (context) => LoyaltyHistoryPage());
+            case AmusementTicketsPage.path:
+              return MaterialPageRoute(builder: (context) => AmusementTicketsPage());
           }
         },
       ),

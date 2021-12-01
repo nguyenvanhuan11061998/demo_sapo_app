@@ -55,7 +55,7 @@ class ProductWidget extends StatelessWidget {
                 productModel.variants![0].comparePrice !=
                         productModel.variants![0].salePrice
                     ? Text(
-                        (productModel.variants![0].comparePrice ?? 0)!
+                        (productModel.variants![0].comparePrice)!
                                 .toInt()
                                 .toMoney() +
                             'đ',

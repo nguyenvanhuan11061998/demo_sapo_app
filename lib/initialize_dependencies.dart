@@ -6,6 +6,7 @@ import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'data/blocs/news/blog_repository.dart';
+import 'data/repository/auth_repository.dart';
 import 'data/repository/category_repository_impl.dart';
 import 'data/repository/product_repository_impl.dart';
 import 'domain/local/local_service.dart';
@@ -34,6 +35,7 @@ Future initializeDependencies() async {
   //       return AuthenticationDto.fromJson(json as Map<String, dynamic>);
   //     }));
 
+  GetIt.instance.registerSingleton(AuthRepository());
   GetIt.instance.registerSingleton(ProductRepositoryImpl());
   GetIt.instance.registerSingleton(CategoryRepositoryImpl());
   GetIt.instance.registerSingleton(BlogRepository());

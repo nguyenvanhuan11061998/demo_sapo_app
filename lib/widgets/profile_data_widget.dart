@@ -1,6 +1,8 @@
 import 'dart:core';
 
 import 'package:demo_sapo_app/gen/assets.gen.dart';
+import 'package:demo_sapo_app/pages/main/profile/amusement_tickets/amusement_tickets_page.dart';
+import 'package:demo_sapo_app/pages/main/profile/loyalty_history/loyalty_history_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -29,7 +31,7 @@ class ProfileDataWidget extends StatelessWidget {
             children: [
               InkWell(
                 onTap: () {
-
+                  Navigator.pushNamed(context, LoyaltyHistoryPage.path);
                 },
                 child: HeaderItemWidget(
                   title: 'Coin',
@@ -41,7 +43,7 @@ class ProfileDataWidget extends StatelessWidget {
               ),
               InkWell(
                 onTap: () {
-
+                  Navigator.pushNamed(context, AmusementTicketsPage.path);
                 },
                 child: HeaderItemWidget(
                   title: 'Vé vui chơi',
