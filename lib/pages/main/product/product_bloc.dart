@@ -2,7 +2,6 @@
 
 
 import 'package:demo_sapo_app/data/datasource/product_api_service.dart';
-import 'package:demo_sapo_app/domain/model/home_config/product.dart';
 import 'package:demo_sapo_app/pages/main/product/product_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

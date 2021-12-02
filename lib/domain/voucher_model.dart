@@ -1,9 +1,12 @@
 abstract class VoucherModel {
-  int? id;
-  String? name;
-  String? code;
-  String? description;
-  String? endDate;
-  double? discountPercent;
-  double? orderTotalRequired;
+  int? get id;
+  String? get name;
+  String? get code;
+  String? get description;
+  String? get endDate;
+  double? get discountPercent;
+  double? get orderTotalRequired;
+  String? get status;
+  String? get start_date;
+  double? get discountAmount;
 }

@@ -1,5 +1,6 @@
 import 'package:auth_nav/bloc/auth_navigation_bloc.dart';
 import 'package:demo_sapo_app/app_oauth2_interceptor.dart';
+import 'package:demo_sapo_app/data/blocs/voucher/voucher_bloc.dart';
 import 'package:demo_sapo_app/pages/main/product/product_bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
@@ -40,6 +41,7 @@ Future initializeDependencies() async {
   GetIt.instance.registerSingleton(CategoryRepositoryImpl());
   GetIt.instance.registerSingleton(BlogRepository());
   GetIt.instance.registerSingleton(ProductBloc());
+  GetIt.instance.registerSingleton(VoucherBloc());
 
   GetIt.instance.registerSingleton(await SharedPreferences.getInstance());
   GetIt.instance.registerSingleton(LocalService());

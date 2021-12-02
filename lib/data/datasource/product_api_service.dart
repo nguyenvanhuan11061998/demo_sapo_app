@@ -11,26 +11,6 @@ import 'package:get_it/get_it.dart';
 class ProductApiService implements ProductRepository {
   DioApp dio = GetIt.instance.get();
 
-  Future<List<VoucherModel>> getVoucher() async {
-    // final response =
-    //     await dio.dioCore.get('/admin/coupon_promotions.json?limit=100');
-
-    await Future.delayed(const Duration(seconds: 5));
-    List<VoucherModel> data = [
-      VoucherDto("CPM1", "", 10, "2021-12-31T02:24:32Z", 2500, "11/11", 0, null,
-          "active"),
-      VoucherDto("CPM1", "", 10, "2021-12-31T02:24:32Z", 2500, "11/11", 0, null,
-          "active"),
-      VoucherDto("CPM1", "", 10, "2021-12-31T02:24:32Z", 2500, "11/11", 0, null,
-          "active"),
-      VoucherDto("CPM1", "", 10, "2021-12-31T02:24:32Z", 2500, "11/11", 0, null,
-          "active"),
-      VoucherDto("CPM1", "", 10, "2021-12-31T02:24:32Z", 2500, "11/11", 0, null,
-          "active")
-    ];
-    return data;
-  }
-
   @override
   Future<List<ProductModel>> searchProduct({List<int>? categoryIds}) async {
     String responseString =
@@ -72,5 +52,39 @@ class ProductApiService implements ProductRepository {
       rethrow;
     }
   }
+
+  Future<List<VoucherModel>> getVoucher() async {
+    Future.delayed(const Duration(seconds: 2));
+    List<String> listJsonVoucher = [];
+    try {
+      listJsonVoucher.add(jsonVoucher1);
+      listJsonVoucher.add(jsonVoucher2);
+      listJsonVoucher.add(jsonVoucher3);
+      listJsonVoucher.add(jsonVoucher4);
+
+      List<VoucherModel> listResponse = [];
+      for (var jsonVoucher in listJsonVoucher) {
+        final json = jsonDecode(jsonVoucher);
+        final response = (json['coupon_codes'] as List<dynamic>).map((item) =>
+            VoucherDto.fromJson(item));
+        for (var e in response) {
+          listResponse.add(e);
+        }
+      }
+      return listResponse;
+    } catch (err) {
+      rethrow;
+    }
+
+  }
+
+
+  String jsonVoucher1 = '{"metadata":{"total":1,"page":1,"limit":100},"coupon_codes":[{"id":262175,"coupon_promotion_id":2590,"coupon_promotion_code":null,"tenant_id":246770,"code":"TESTVO","start_date":"2021-11-17T08:52:31Z","end_date":null,"status":"active","offer_status":"unoffered","limit":null,"limit_per_customer":null,"committed":0,"account_id":332798,"created_on":"2021-11-17T08:59:32Z","modified_on":"2021-11-17T09:01:49Z","cancelled_on":null}]}';
+
+  String jsonVoucher2 = '{"metadata":{"total":1,"page":1,"limit":100},"coupon_codes":[{"id":262174,"coupon_promotion_id":2589,"coupon_promotion_code":null,"tenant_id":246770,"code":"GIAM20K","start_date":"2021-11-17T08:50:58Z","end_date":"2021-12-31T16:59:59Z","status":"active","offer_status":"unoffered","limit":null,"limit_per_customer":1,"committed":2,"account_id":332798,"created_on":"2021-11-17T08:52:49Z","modified_on":"2021-11-17T08:53:39Z","cancelled_on":null}]}';
+
+  String jsonVoucher3 = '{"metadata":{"total":1,"page":1,"limit":100},"coupon_codes":[{"id":262173,"coupon_promotion_id":2588,"coupon_promotion_code":null,"tenant_id":246770,"code":"FREESHIP","start_date":"2021-11-17T08:41:50Z","end_date":"2021-12-31T16:59:59Z","status":"active","offer_status":"unoffered","limit":null,"limit_per_customer":null,"committed":0,"account_id":332798,"created_on":"2021-11-17T08:48:57Z","modified_on":"2021-11-17T08:50:10Z","cancelled_on":null}]}';
+
+  String jsonVoucher4 = '{"metadata":{"total":1,"page":1,"limit":100},"coupon_codes":[{"id":258682,"coupon_promotion_id":2564,"coupon_promotion_code":null,"tenant_id":246770,"code":"SAPO","start_date":"2021-11-15T09:31:52Z","end_date":"2021-12-15T09:31:52Z","status":"active","offer_status":"unoffered","limit":null,"limit_per_customer":null,"committed":2,"account_id":332798,"created_on":"2021-11-15T09:33:31Z","modified_on":"2021-11-15T09:57:58Z","cancelled_on":null}]}';
 
 }
