@@ -9,6 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'data/blocs/news/blog_repository.dart';
 import 'data/repository/auth_repository.dart';
 import 'data/repository/category_repository_impl.dart';
+import 'data/repository/order_repository_imp.dart';
 import 'data/repository/product_repository_impl.dart';
 import 'domain/local/local_service.dart';
 import 'domain/repository/category_repository.dart';
@@ -42,6 +43,7 @@ Future initializeDependencies() async {
   GetIt.instance.registerSingleton(BlogRepository());
   GetIt.instance.registerSingleton(ProductBloc());
   GetIt.instance.registerSingleton(VoucherBloc());
+  GetIt.instance.registerSingleton(OrderRepositoryImpl());
 
   GetIt.instance.registerSingleton(await SharedPreferences.getInstance());
   GetIt.instance.registerSingleton(LocalService());

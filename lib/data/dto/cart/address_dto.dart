@@ -66,7 +66,6 @@ class AddressDto implements AddressModel {
       this.ward);
 
   @override
-  // TODO: implement localFullAddress
   String get localFullAddress {
     return [
       address1,

@@ -16,7 +16,7 @@ class ItemOptionProfileWidget extends StatelessWidget {
     return Material(
       color: Colors.white,
       child: InkWell(
-        onTap: () => onPress,
+        onTap: () => onPress(),
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
           width: double.infinity,

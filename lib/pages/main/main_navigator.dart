@@ -8,6 +8,8 @@ import 'package:demo_sapo_app/pages/main/news/new_detail_page.dart';
 import 'package:demo_sapo_app/pages/main/product/product_detail/product_detail_page.dart';
 import 'package:demo_sapo_app/pages/main/profile/amusement_tickets/amusement_tickets_page.dart';
 import 'package:demo_sapo_app/pages/main/profile/loyalty_history/loyalty_history_page.dart';
+import 'package:demo_sapo_app/pages/main/profile/order/order_detail_page.dart';
+import 'package:demo_sapo_app/pages/main/profile/order/order_page.dart';
 import 'package:demo_sapo_app/pages/main/profile/voucher_page.dart';
 import 'package:demo_sapo_app/utils/navigator_support.dart';
 import 'package:flutter/cupertino.dart';
@@ -60,6 +62,10 @@ class MainNavigatorState extends State<MainNavigator>{
               return MaterialPageRoute(builder: (context) => AmusementTicketsPage());
             case VoucherPage.path:
               return MaterialPageRoute(builder: (context) => VoucherPage());
+            case OrderPage.path:
+              return MaterialPageRoute(builder: (context) => OrderPage());
+            case OrderDetailPage.path:
+              return MaterialPageRoute(builder: (context) => OrderDetailPage(params: setting.arguments as OrderDetailParams));
           }
         },
       ),

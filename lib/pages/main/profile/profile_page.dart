@@ -6,6 +6,8 @@ import 'package:demo_sapo_app/widgets/profile_data_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'order/order_page.dart';
+
 class ProfilePage extends StatefulWidget {
   @override
   ProfilePageState createState() {
@@ -41,7 +43,9 @@ class ProfilePageState extends State<ProfilePage> {
                           ItemOptionProfileWidget(
                               icon: Assets.icons.icBag,
                               title: 'Đơn hàng',
-                              onPress: () {}),
+                              onPress: () {
+                                Navigator.pushNamed(context, OrderPage.path);
+                              }),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
