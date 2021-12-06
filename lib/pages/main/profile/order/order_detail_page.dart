@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import 'address_receive_widget.dart';
+import 'bottom_cancel_order_widget.dart';
 
 class OrderDetailParams {
   OrderModel model;
@@ -30,6 +31,7 @@ class OrderDetailPage extends StatefulWidget {
 class _OrderDetailPageState extends State<OrderDetailPage> {
   @override
   Widget build(BuildContext context) {
+    final ctx = context;
     return Scaffold(
       appBar: AppBar(
         title: Text('Thông tin đơn hàng'),
@@ -109,7 +111,18 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
           textColor: Color(0xffd10000),
           disableColor: Colors.white,
           onPressed: () {
-            
+            showModalBottomSheet(
+                context: context,
+                useRootNavigator: true,
+                backgroundColor: Colors.transparent,
+                isScrollControlled: true,
+                builder: (context) => BottomCancelOrderWidget(
+                      idProduct: widget.params.model.id,
+                      cancelSuccess: () {
+                        // Navigator.of(context, rootNavigator: false).pop(true);
+                        // Navigator.pop(context, true);
+                      },
+                    )).then((value) => Navigator.pop(context, true));
           },
         ),
       ),

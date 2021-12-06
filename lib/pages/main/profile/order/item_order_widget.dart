@@ -11,16 +11,25 @@ import 'order_detail_page.dart';
 class ItemOrderWidget extends StatelessWidget {
   OrderModel model;
   Status status;
+  VoidCallback onRefreshData;
 
-  ItemOrderWidget({required this.model, required this.status, Key? key}) : super(key: key);
+  ItemOrderWidget(
+      {required this.onRefreshData,
+      required this.model,
+      required this.status,
+      Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Material(
       color: Colors.white,
       child: InkWell(
-        onTap: () {
-          Navigator.pushNamed(context, OrderDetailPage.path, arguments: OrderDetailParams(model, status));
+        onTap: () { Navigator.pushNamed(context, OrderDetailPage.path,
+                  arguments: OrderDetailParams(model, status))
+              .then((isCancelSuccess) => {
+                    if (isCancelSuccess as bool) {onRefreshData()}
+                  });
         },
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -33,8 +42,8 @@ class ItemOrderWidget extends StatelessWidget {
                   ...List.generate(
                       model.order_line_items?.length ?? 0,
                       (index) => Padding(
-                        padding: const EdgeInsets.only(top: 10),
-                        child: Row(
+                            padding: const EdgeInsets.only(top: 10),
+                            child: Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 SizedBox(height: 10),
@@ -44,7 +53,8 @@ class ItemOrderWidget extends StatelessWidget {
                                 Expanded(
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Text(
                                           model.order_line_items![index]
@@ -59,7 +69,8 @@ class ItemOrderWidget extends StatelessWidget {
                                           overflow: TextOverflow.ellipsis),
                                       SizedBox(height: 5),
                                       Row(
-                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
                                         crossAxisAlignment:
                                             CrossAxisAlignment.center,
                                         children: [
@@ -70,7 +81,8 @@ class ItemOrderWidget extends StatelessWidget {
                                                   .bodyText1!
                                                   .copyWith(
                                                       fontSize: 13,
-                                                      color: Color(0xffd10000))),
+                                                      color:
+                                                          Color(0xffd10000))),
                                           Expanded(
                                               child: Text(
                                             'Số lượng: ${model.order_line_items![index].quantity.toInt()}',
@@ -87,7 +99,7 @@ class ItemOrderWidget extends StatelessWidget {
                                 )
                               ],
                             ),
-                      ))
+                          ))
                 ],
               ),
             ),

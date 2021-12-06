@@ -63,7 +63,7 @@ class MainNavigatorState extends State<MainNavigator>{
             case VoucherPage.path:
               return MaterialPageRoute(builder: (context) => VoucherPage());
             case OrderPage.path:
-              return MaterialPageRoute(builder: (context) => OrderPage());
+              return MaterialPageRoute(builder: (context) => OrderPage(indexTab: (setting.arguments?? 0) as int));
             case OrderDetailPage.path:
               return MaterialPageRoute(builder: (context) => OrderDetailPage(params: setting.arguments as OrderDetailParams));
           }

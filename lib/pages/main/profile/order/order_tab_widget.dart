@@ -32,10 +32,15 @@ class _OrderTabWidgetState extends State<OrderTabWidget> {
       color: Colors.white,
       child: PagingListView<OrderModel> (
         itemBuilder: (context, data, child) {
-          return ItemOrderWidget(key: ValueKey(data.id), model: data, status: widget.statusObj);
+          return ItemOrderWidget(key: ValueKey(data.id), model: data, status: widget.statusObj, onRefreshData: () {
+            setState(() {
+              // call lại api, page sẽ tự động load lại data
+              _datasource = OrderDatasource(OrderRepositoryImpl(), widget.statusObj);
+            });
+          });
         },
         separatorBuilder: (context, index) {
-          return Container(height: 5, color: Color(0xffe3e3e3),);
+          return Container(height: 5, color: Color(0xffe3e3e3));
         },
         pageDataSource: _datasource,
       )

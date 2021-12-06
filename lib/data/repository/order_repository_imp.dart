@@ -14,4 +14,10 @@ class OrderRepositoryImpl implements OrderRepository{
     return orderApiService.getOrders(status, page);
   }
 
+  @override
+  Future<bool> cancelOrder(int idProduct) {
+    return orderApiService.cancelOrder(idProduct);
+  }
+
+
 }

@@ -8,8 +8,9 @@ import 'order_tab_widget.dart';
 
 class OrderPage extends StatefulWidget {
   static const path = 'OrderPage';
+  int indexTab;
 
-  const OrderPage({Key? key}) : super(key: key);
+  OrderPage({this.indexTab = 0, Key? key}) : super(key: key);
 
   @override
   _OrderPageState createState() => _OrderPageState();
@@ -22,6 +23,7 @@ class _OrderPageState extends State<OrderPage> with TickerProviderStateMixin {
   void initState() {
     super.initState();
     _orderBloc.init(this);
+    _orderBloc.tabController.index = widget.indexTab;
   }
 
   @override

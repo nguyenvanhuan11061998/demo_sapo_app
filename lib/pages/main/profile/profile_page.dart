@@ -53,25 +53,33 @@ class ProfilePageState extends State<ProfilePage> {
                                 child: OrderStatusWidget(
                                     icon: Assets.icons.icBox,
                                     title: 'Chờ xác nhận',
-                                    onPress: () {}),
+                                    onPress: () {
+                                      Navigator.pushNamed(context, OrderPage.path, arguments: 0);
+                                    }),
                               ),
                               Expanded(
                                 child: OrderStatusWidget(
                                     icon: Assets.icons.icConvert,
                                     title: 'Chờ lấy hàng',
-                                    onPress: () {}),
+                                    onPress: () {
+                                      Navigator.pushNamed(context, OrderPage.path, arguments: 1);
+                                    }),
                               ),
                               Expanded(
                                 child: OrderStatusWidget(
                                     icon: Assets.icons.icTruckTime,
                                     title: 'Đang giao',
-                                    onPress: () {}),
+                                    onPress: () {
+                                      Navigator.pushNamed(context, OrderPage.path, arguments: 3);
+                                    }),
                               ),
                               Expanded(
                                 child: OrderStatusWidget(
                                     icon: Assets.icons.icTruckRemove,
                                     title: 'Hủy giao',
-                                    onPress: () {}),
+                                    onPress: () {
+                                      Navigator.pushNamed(context, OrderPage.path, arguments: 5);
+                                    }),
                               ),
                             ],
                           ),
