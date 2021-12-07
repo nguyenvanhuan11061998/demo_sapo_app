@@ -11,6 +11,7 @@ import 'package:demo_sapo_app/pages/main/profile/loyalty_history/loyalty_history
 import 'package:demo_sapo_app/pages/main/profile/order/order_detail_page.dart';
 import 'package:demo_sapo_app/pages/main/profile/order/order_page.dart';
 import 'package:demo_sapo_app/pages/main/profile/voucher_page.dart';
+import 'package:demo_sapo_app/pages/main/search/search_page.dart';
 import 'package:demo_sapo_app/utils/navigator_support.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -66,6 +67,8 @@ class MainNavigatorState extends State<MainNavigator>{
               return MaterialPageRoute(builder: (context) => OrderPage(indexTab: (setting.arguments?? 0) as int));
             case OrderDetailPage.path:
               return MaterialPageRoute(builder: (context) => OrderDetailPage(params: setting.arguments as OrderDetailParams));
+            case SearchPage.path:
+              return MaterialPageRoute(builder: (context) => SearchPage());
           }
         },
       ),
