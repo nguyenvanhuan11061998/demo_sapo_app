@@ -13,4 +13,8 @@ abstract class ProductRepository {
   Future<ProductModel> productDetail(int id);
 
   Future<List<ProductModel>> searchProductSuggest({List<int>? categoryIds});
+
+  Future<List<ProductModel>> searchProducts(String query);
+
+  Future<List<String>> getTags();
 }

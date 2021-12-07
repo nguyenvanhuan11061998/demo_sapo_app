@@ -29,6 +29,16 @@ class ProductRepositoryImpl implements ProductRepository{
    return _productApiService.searchProductSuggest(categoryIds: categoryIds);
   }
 
+  @override
+  Future<List<ProductModel>> searchProducts(String query) {
+    return _productApiService.searchProducts(query);
+  }
+
+  @override
+  Future<List<String>> getTags() {
+    return _productApiService.getTags();
+  }
+
 
 
 }

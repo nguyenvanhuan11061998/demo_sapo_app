@@ -11,6 +11,7 @@ import 'package:demo_sapo_app/domain/model/home_config/home_config_model.dart';
 import 'package:demo_sapo_app/domain/model/home_config/product.dart';
 import 'package:demo_sapo_app/domain/voucher_model.dart';
 import 'package:demo_sapo_app/gen/assets.gen.dart';
+import 'package:demo_sapo_app/pages/main/search/search_page.dart';
 import 'package:demo_sapo_app/widgets/menuitemwidget.dart';
 import 'package:demo_sapo_app/widgets/product_widget.dart';
 import 'package:flutter/cupertino.dart';
@@ -60,6 +61,9 @@ class HomePageState extends State<HomePage> {
         elevation: 0,
         backgroundColor: Color(0xffD10000),
         title: InkWell(
+          onTap: () {
+            Navigator.pushNamed(context, SearchPage.path);
+          },
           child: Container(
             padding: EdgeInsets.all(8),
             decoration: BoxDecoration(

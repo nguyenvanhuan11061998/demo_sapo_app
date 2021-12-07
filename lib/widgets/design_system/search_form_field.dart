@@ -91,7 +91,7 @@ class SearchFormField extends FormField<String> {
                   ),
                 ),
               ),
-              // icon phía sau box nhập text
+              // widget hiển thị phía sau box nhập text
               suffix: Padding(
                 padding: EdgeInsets.only(right: 6),
                 child: suffixIcon ??
@@ -114,7 +114,14 @@ class SearchFormField extends FormField<String> {
             ),
           ],
         );
-      });
+
+      }
+      );
+
+  @override
+  SearchFormFieldState createState() {
+    return SearchFormFieldState();
+  }
 }
 
 class SearchFormFieldState extends FormFieldState<String> {
