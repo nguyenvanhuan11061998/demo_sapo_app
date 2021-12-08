@@ -58,10 +58,11 @@ class _SearchPageState extends State<SearchPage> {
                     textEditingController: _textEditingController,
                     hint: 'Tìm kiếm',
                     backgroundColor: Colors.white,
-                    onEditingComplete: () {},
+                    onEditingComplete: () {
+                      _searchBloc.searchProduct(_textEditingController.text);
+                    },
                     suffixIcon: InkResponse(
                       onTap: () {
-                        _searchBloc.searchProduct(_textEditingController.text);
                       },
                       child: SvgPicture.asset(Assets.icons.icScanBold),
                     ),
