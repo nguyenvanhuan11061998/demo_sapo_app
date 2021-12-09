@@ -1,4 +1,5 @@
 import 'package:demo_sapo_app/domain/model/home_config/top_category_model.dart';
+import 'package:demo_sapo_app/pages/main/category/group_category/group_category_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -18,7 +19,9 @@ class MenuItemWidgetState extends State<MenuItemWidget> {
       width: 60,
       height: 80,
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          Navigator.pushNamed(context, GroupCategoryPage.path, arguments: widget.model);
+        },
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.center,

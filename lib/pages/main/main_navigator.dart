@@ -1,6 +1,7 @@
 
 import 'package:demo_sapo_app/data/blocs/cart_bloc/cart_bloc.dart';
 import 'package:demo_sapo_app/domain/model/blogs/article_model.dart';
+import 'package:demo_sapo_app/domain/model/home_config/top_category_model.dart';
 import 'package:demo_sapo_app/pages/main/cart/cart_page.dart';
 import 'package:demo_sapo_app/pages/main/home/home_page.dart';
 import 'package:demo_sapo_app/pages/main/main_page.dart';
@@ -17,6 +18,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
+
+import 'category/group_category/group_category_page.dart';
 
 class MainNavigator extends StatefulWidget {
   const MainNavigator({Key? key}) : super(key: key);
@@ -69,6 +72,8 @@ class MainNavigatorState extends State<MainNavigator>{
               return MaterialPageRoute(builder: (context) => OrderDetailPage(params: setting.arguments as OrderDetailParams));
             case SearchPage.path:
               return MaterialPageRoute(builder: (context) => SearchPage());
+            case GroupCategoryPage.path:
+              return MaterialPageRoute(builder: (context) => GroupCategoryPage(model: setting.arguments as TopCategoryModel));
           }
         },
       ),
