@@ -24,6 +24,8 @@ class ProductRepositoryImpl implements ProductRepository{
     return _productApiService.productDetail(id);
   }
 
+
+
   @override
   Future<List<ProductModel>> searchProductSuggest({List<int>? categoryIds}) {
    return _productApiService.searchProductSuggest(categoryIds: categoryIds);
